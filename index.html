@@ -44,9 +44,9 @@
   .hint{margin:10px 16px;padding:10px 14px;background:#f0f4ff;border-radius:10px;font-size:12px;color:#555;line-height:1.6;}
   .msg{font-size:14px;color:#aaa;text-align:center;padding:40px 16px;}
   .cl{font-size:13px;color:#aaa;}
-  .expwrap{padding:16px;display:none;}
-  .expwrap canvas{width:100%;border-radius:10px;border:1px solid #ddd;display:block;}
-  .dlbtn{display:block;width:100%;margin-top:10px;padding:11px;border:1.5px solid #ddd;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;background:#fff;color:#111;text-align:center;}
+  .expwrap{padding:16px;display:none;text-align:center;}
+  .expwrap canvas{width:auto;max-width:100%;border-radius:10px;border:1px solid #ddd;display:block;margin:0 auto;}
+  .dlbtn{display:inline-block;margin-top:10px;padding:11px 32px;border:1.5px solid #ddd;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;background:#fff;color:#111;}
   .dlbtn:hover{background:#f5f5f5;}
 </style>
 </head>
@@ -90,6 +90,7 @@
     <div class="msg" id="me" style="display:none">No favourites yet — go to Browse and click Pokémon to add them!</div>
     <div class="expwrap" id="expwrap">
       <canvas id="expcanvas"></canvas>
+      <br/>
       <button class="dlbtn" onclick="downloadImg()">Download image</button>
     </div>
   </div>
@@ -156,173 +157,4 @@ const VARIANTS=[
   {id:10237,dexId:549,name:'Hisuian Lilligant'},
   {id:10238,dexId:570,name:'Hisuian Zorua'},
   {id:10239,dexId:571,name:'Hisuian Zoroark'},
-  {id:10240,dexId:628,name:'Hisuian Braviary'},
-  {id:10241,dexId:705,name:'Hisuian Sliggoo'},
-  {id:10242,dexId:706,name:'Hisuian Goodra'},
-  {id:10243,dexId:713,name:'Hisuian Avalugg'},
-  {id:10244,dexId:724,name:'Hisuian Decidueye'},
-  {section:'Paldean'},
-  {id:10250,dexId:128,name:'Paldean Tauros (Combat)'},
-  {id:10251,dexId:128,name:'Paldean Tauros (Blaze)'},
-  {id:10252,dexId:128,name:'Paldean Tauros (Aqua)'},
-  {id:10253,dexId:194,name:'Paldean Wooper'}
-];
-
-let myName='',curGen=1,showVariants=false,favs=new Set(),nameArr=[],namesLoaded=false;
-
-function spr(id){return 'https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/'+id+'.png';}
-function pad(id){return String(id).padStart(3,'0');}
-function getName(id){return (namesLoaded&&nameArr[id-1])||('#'+pad(id));}
-
-fetch('https://unpkg.com/pokemon/data/en.json')
-  .then(function(r){return r.json();})
-  .then(function(d){nameArr=d;namesLoaded=true;if(myName)rg();})
-  .catch(function(){namesLoaded=false;});
-
-function doLogin(){
-  var n=document.getElementById('ni').value.trim();if(!n)return;
-  myName=n;
-  document.getElementById('ls').style.display='none';
-  document.getElementById('app').style.display='block';
-  uh();bgs();rg();
-}
-
-function uh(){document.getElementById('huser').textContent=myName+' · '+favs.size+' favourites';}
-
-function bgs(){
-  var genBtns=GENS.map(function(g){
-    return '<button class="gp'+((!showVariants&&g.id===curGen)?' on':'')+'" onclick="sg('+g.id+')">Gen '+g.l+'</button>';
-  }).join('');
-  var varBtn='<button class="gp var'+(showVariants?' on':'')+'" onclick="sgv()">Variants</button>';
-  document.getElementById('gs').innerHTML=genBtns+varBtn;
-}
-
-function sg(id){showVariants=false;curGen=id;document.getElementById('si').value='';bgs();rg();}
-function sgv(){showVariants=true;document.getElementById('si').value='';bgs();rg();}
-
-function items(id){
-  var g=GENS.find(function(x){return x.id===id;});
-  return Array.from({length:g.e-g.s+1},function(_,i){return g.s+i;});
-}
-
-function card(sprId,dexId,name,isFav,onclk){
-  return '<div class="pc'+(isFav?' fav':'')+'" onclick="'+onclk+'" title="'+name+'">'
-    +'<div class="fmark"></div>'
-    +'<img class="si" src="'+spr(sprId)+'" width="104" height="104" onerror="this.style.background=\'#eee\'"/>'
-    +'<div class="pn">'+name+'</div>'
-    +'<div class="pi">#'+pad(dexId)+'</div>'
-    +'</div>';
-}
-
-function rg(){
-  var s=document.getElementById('si').value.toLowerCase();
-  var pg=document.getElementById('pg');
-  if(showVariants){
-    var html='';
-    VARIANTS.forEach(function(v){
-      if(v.section){html+='<div class="vsec" style="grid-column:1/-1">'+v.section+' Forms</div>';return;}
-      if(s&&!v.name.toLowerCase().includes(s))return;
-      html+=card(v.id,v.dexId,v.name,favs.has('v'+v.id),'tfv('+v.id+')');
-    });
-    pg.innerHTML=html;
-  } else {
-    var list=items(curGen).filter(function(id){
-      return !s||getName(id).toLowerCase().includes(s)||(''+id).includes(s);
-    });
-    pg.innerHTML=list.map(function(id){
-      return card(id,id,getName(id),favs.has(id),'tf('+id+')');
-    }).join('');
-  }
-}
-
-function tf(id){favs.has(id)?favs.delete(id):favs.add(id);rg();uh();}
-function tfv(id){var key='v'+id;favs.has(key)?favs.delete(key):favs.add(key);rg();uh();}
-
-function getInfo(key){
-  if(String(key).startsWith('v')){
-    var id=parseInt(key.slice(1));
-    var v=VARIANTS.find(function(x){return x.id===id;});
-    return {sprId:id,dexId:v?v.dexId:id,name:v?v.name:'#'+pad(id)};
-  }
-  var id=parseInt(key);
-  return {sprId:id,dexId:id,name:getName(id)};
-}
-
-function rmg(){
-  var keys=[...favs];
-  document.getElementById('cl').textContent=keys.length+' Pokemon';
-  document.getElementById('expwrap').style.display='none';
-  if(!keys.length){document.getElementById('me').style.display='block';document.getElementById('mg').innerHTML='';return;}
-  document.getElementById('me').style.display='none';
-  document.getElementById('mg').innerHTML=keys.map(function(key){
-    var p=getInfo(key);
-    var isV=String(key).startsWith('v');
-    return card(p.sprId,p.dexId,p.name,true,isV?'tfv('+p.sprId+');rmg()':'tf('+p.sprId+');rmg()');
-  }).join('');
-}
-
-function loadImg(id){
-  return new Promise(function(resolve){
-    var img=new Image();img.crossOrigin='anonymous';
-    img.onload=function(){resolve(img);};img.onerror=function(){resolve(null);};
-    img.src=spr(id);
-  });
-}
-
-async function exportImg(){
-  var keys=[...favs];
-  if(!keys.length){alert('No favourites yet!');return;}
-  var btn=document.getElementById('expbtn');
-  btn.textContent='Generating...';btn.disabled=true;
-  var cols=6,cw=80,ch=96,px=16,th=56;
-  var rows=Math.ceil(keys.length/cols);
-  var W=cols*cw+px*2,H=th+rows*ch+px;
-  var canvas=document.getElementById('expcanvas');
-  canvas.width=W;canvas.height=H;
-  var ctx=canvas.getContext('2d');
-  ctx.fillStyle='#1a1a2e';ctx.fillRect(0,0,W,H);
-  var cap=myName.charAt(0).toUpperCase()+myName.slice(1);
-  ctx.textAlign='center';ctx.fillStyle='#fff';
-  ctx.font='bold 14px sans-serif';
-  ctx.fillText(cap+"'s favorite Pokemons",W/2,28);
-  ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(px,38);ctx.lineTo(W-px,38);ctx.stroke();
-  var infos=keys.map(function(key){return getInfo(key);});
-  var imgs=await Promise.all(infos.map(function(p){return loadImg(p.sprId);}));
-  infos.forEach(function(p,i){
-    var col=i%cols,row=Math.floor(i/cols);
-    var x=px+col*cw,y=th+row*ch,cx=x+cw/2;
-    ctx.fillStyle='rgba(255,255,255,0.07)';
-    ctx.fillRect(x+2,y+2,cw-4,ch-4);
-    if(imgs[i]){try{ctx.drawImage(imgs[i],cx-28,y+4,56,56);}catch(e){}}
-    else{ctx.fillStyle='rgba(255,255,255,0.1)';ctx.fillRect(cx-28,y+4,56,56);}
-    ctx.fillStyle='#fff';ctx.font='bold 8px sans-serif';ctx.textAlign='center';
-    var nm=p.name;if(nm.length>12)nm=nm.slice(0,11)+'…';
-    ctx.fillText(nm,cx,y+70);
-    ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='7px sans-serif';
-    ctx.fillText('#'+pad(p.dexId),cx,y+80);
-  });
-  var ew=document.getElementById('expwrap');
-  ew.style.display='block';
-  ew.scrollIntoView({behavior:'smooth'});
-  btn.textContent='Export as image';btn.disabled=false;
-}
-
-function downloadImg(){
-  var canvas=document.getElementById('expcanvas');
-  try{
-    var a=document.createElement('a');
-    a.download=myName+'-pokefaves.png';
-    a.href=canvas.toDataURL('image/png');a.click();
-  }catch(e){alert('Right-click the image above and choose "Save image as".');}
-}
-
-function st(tab){
-  document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('on',['b','m'][i]===tab);});
-  document.getElementById('tb').style.display=tab==='b'?'block':'none';
-  document.getElementById('tm').style.display=tab==='m'?'block':'none';
-  if(tab==='b')rg();if(tab==='m')rmg();
-}
-</script>
-</body>
-</html>
+  {id:10240,dexId:628,name:'Hisuian Braviary'
