@@ -44,7 +44,7 @@
   .hint{margin:10px 16px;padding:10px 14px;background:#f0f4ff;border-radius:10px;font-size:12px;color:#555;line-height:1.6;}
   .msg{font-size:14px;color:#aaa;text-align:center;padding:40px 16px;}
   .cl{font-size:13px;color:#aaa;}
-  .expwrap{padding:16px;}
+  .expwrap{padding:16px;display:none;}
   .expwrap canvas{width:100%;border-radius:10px;border:1px solid #ddd;display:block;}
   .dlbtn{display:block;width:100%;margin-top:10px;padding:11px;border:1.5px solid #ddd;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;background:#fff;color:#111;text-align:center;}
   .dlbtn:hover{background:#f5f5f5;}
@@ -85,13 +85,13 @@
       <button class="ebtn" id="expbtn" onclick="exportImg()">Export as image</button>
       <span class="cl" id="cl"></span>
     </div>
-    <div class="hint">Click "Export as image" — the image will appear below your list. Then click "Download image"!</div>
-    <div class="expwrap" id="expwrap">
-      <canvas id="expcanvas"></canvas>
-      <button class="dlbtn" id="dlbtn" style="display:none" onclick="downloadImg()">Download image</button>
-    </div>
+    <div class="hint">Click "Export as image" — scroll down after to see and download your image!</div>
     <div class="pg" id="mg"></div>
     <div class="msg" id="me" style="display:none">No favourites yet — go to Browse and click Pokémon to add them!</div>
+    <div class="expwrap" id="expwrap">
+      <canvas id="expcanvas"></canvas>
+      <button class="dlbtn" onclick="downloadImg()">Download image</button>
+    </div>
   </div>
 </div>
 
@@ -251,6 +251,7 @@ function getInfo(key){
 function rmg(){
   var keys=[...favs];
   document.getElementById('cl').textContent=keys.length+' Pokemon';
+  document.getElementById('expwrap').style.display='none';
   if(!keys.length){document.getElementById('me').style.display='block';document.getElementById('mg').innerHTML='';return;}
   document.getElementById('me').style.display='none';
   document.getElementById('mg').innerHTML=keys.map(function(key){
@@ -301,10 +302,10 @@ async function exportImg(){
     ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='8px sans-serif';
     ctx.fillText('#'+pad(p.dexId),cx,y+112);
   });
+  var ew=document.getElementById('expwrap');
+  ew.style.display='block';
+  ew.scrollIntoView({behavior:'smooth'});
   btn.textContent='Export as image';btn.disabled=false;
-  document.getElementById('dlbtn').style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-  alert('Done! Scroll down to see your image and click Download image.');
 }
 
 function downloadImg(){
