@@ -275,7 +275,7 @@ async function exportImg(){
   if(!keys.length){alert('No favourites yet!');return;}
   var btn=document.getElementById('expbtn');
   btn.textContent='Generating...';btn.disabled=true;
-  var cols=5,cw=96,ch=114,px=16,th=64;
+  var cols=5,cw=110,ch=128,px=16,th=64;
   var rows=Math.ceil(keys.length/cols);
   var W=cols*cw+px*2,H=th+rows*ch+px;
   var canvas=document.getElementById('expcanvas');
@@ -295,13 +295,13 @@ async function exportImg(){
     var x=px+col*cw,y=th+row*ch,cx=x+cw/2;
     ctx.fillStyle='rgba(255,255,255,0.07)';
     ctx.fillRect(x+2,y+2,cw-4,ch-4);
-    if(imgs[i]){try{ctx.drawImage(imgs[i],cx-34,y+5,68,68);}catch(e){}}
-    else{ctx.fillStyle='rgba(255,255,255,0.1)';ctx.fillRect(cx-34,y+5,68,68);}
-    ctx.fillStyle='#fff';ctx.font='bold 9px sans-serif';ctx.textAlign='center';
+    if(imgs[i]){try{ctx.drawImage(imgs[i],cx-38,y+6,76,76);}catch(e){}}
+    else{ctx.fillStyle='rgba(255,255,255,0.1)';ctx.fillRect(cx-38,y+6,76,76);}
+    ctx.fillStyle='#fff';ctx.font='bold 10px sans-serif';ctx.textAlign='center';
     var nm=p.name;if(nm.length>13)nm=nm.slice(0,12)+'…';
-    ctx.fillText(nm,cx,y+84);
-    ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='8px sans-serif';
-    ctx.fillText('#'+pad(p.dexId),cx,y+95);
+    ctx.fillText(nm,cx,y+94);
+    ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='9px sans-serif';
+    ctx.fillText('#'+pad(p.dexId),cx,y+106);
   });
   var ew=document.getElementById('expwrap');
   ew.style.display='block';
