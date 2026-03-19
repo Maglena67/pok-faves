@@ -104,45 +104,74 @@ const GENS=[
   {id:9,l:'IX',s:906,e:1025}
 ];
 
+// spriteId = PokeAPI variant ID, dexId = original dex number for display
 const VARIANTS=[
   {section:'Alolan'},
-  {id:10091,name:'Alolan Rattata'},{id:10092,name:'Alolan Raticate'},
-  {id:10100,name:'Alolan Raichu'},{id:10101,name:'Alolan Sandshrew'},
-  {id:10102,name:'Alolan Sandslash'},{id:10103,name:'Alolan Vulpix'},
-  {id:10104,name:'Alolan Ninetales'},{id:10105,name:'Alolan Diglett'},
-  {id:10106,name:'Alolan Dugtrio'},{id:10107,name:'Alolan Meowth'},
-  {id:10108,name:'Alolan Persian'},{id:10109,name:'Alolan Geodude'},
-  {id:10110,name:'Alolan Graveler'},{id:10111,name:'Alolan Golem'},
-  {id:10112,name:'Alolan Grimer'},{id:10113,name:'Alolan Muk'},
-  {id:10114,name:'Alolan Exeggutor'},{id:10115,name:'Alolan Marowak'},
+  {spriteId:10091,dexId:19,name:'Alolan Rattata'},
+  {spriteId:10092,dexId:20,name:'Alolan Raticate'},
+  {spriteId:10100,dexId:26,name:'Alolan Raichu'},
+  {spriteId:10101,dexId:27,name:'Alolan Sandshrew'},
+  {spriteId:10102,dexId:28,name:'Alolan Sandslash'},
+  {spriteId:10103,dexId:37,name:'Alolan Vulpix'},
+  {spriteId:10104,dexId:38,name:'Alolan Ninetales'},
+  {spriteId:10105,dexId:50,name:'Alolan Diglett'},
+  {spriteId:10106,dexId:51,name:'Alolan Dugtrio'},
+  {spriteId:10107,dexId:52,name:'Alolan Meowth'},
+  {spriteId:10108,dexId:53,name:'Alolan Persian'},
+  {spriteId:10109,dexId:74,name:'Alolan Geodude'},
+  {spriteId:10110,dexId:75,name:'Alolan Graveler'},
+  {spriteId:10111,dexId:76,name:'Alolan Golem'},
+  {spriteId:10112,dexId:88,name:'Alolan Grimer'},
+  {spriteId:10113,dexId:89,name:'Alolan Muk'},
+  {spriteId:10114,dexId:103,name:'Alolan Exeggutor'},
+  {spriteId:10115,dexId:105,name:'Alolan Marowak'},
   {section:'Galarian'},
-  {id:10158,name:'Galarian Meowth'},{id:10159,name:'Galarian Ponyta'},
-  {id:10160,name:'Galarian Rapidash'},{id:10161,name:'Galarian Slowpoke'},
-  {id:10162,name:'Galarian Slowbro'},{id:10163,name:"Galarian Farfetch'd"},
-  {id:10164,name:'Galarian Weezing'},{id:10165,name:'Galarian Mr. Mime'},
-  {id:10166,name:'Galarian Articuno'},{id:10167,name:'Galarian Zapdos'},
-  {id:10168,name:'Galarian Moltres'},{id:10169,name:'Galarian Slowking'},
-  {id:10170,name:'Galarian Corsola'},{id:10171,name:'Galarian Zigzagoon'},
-  {id:10172,name:'Galarian Linoone'},{id:10173,name:'Galarian Darumaka'},
-  {id:10174,name:'Galarian Darmanitan'},{id:10175,name:'Galarian Yamask'},
-  {id:10176,name:'Galarian Stunfisk'},
+  {spriteId:10158,dexId:52,name:'Galarian Meowth'},
+  {spriteId:10159,dexId:77,name:'Galarian Ponyta'},
+  {spriteId:10160,dexId:78,name:'Galarian Rapidash'},
+  {spriteId:10161,dexId:79,name:'Galarian Slowpoke'},
+  {spriteId:10162,dexId:80,name:'Galarian Slowbro'},
+  {spriteId:10163,dexId:83,name:"Galarian Farfetch'd"},
+  {spriteId:10164,dexId:110,name:'Galarian Weezing'},
+  {spriteId:10165,dexId:122,name:'Galarian Mr. Mime'},
+  {spriteId:10166,dexId:144,name:'Galarian Articuno'},
+  {spriteId:10167,dexId:145,name:'Galarian Zapdos'},
+  {spriteId:10168,dexId:146,name:'Galarian Moltres'},
+  {spriteId:10169,dexId:199,name:'Galarian Slowking'},
+  {spriteId:10170,dexId:222,name:'Galarian Corsola'},
+  {spriteId:10171,dexId:263,name:'Galarian Zigzagoon'},
+  {spriteId:10172,dexId:264,name:'Galarian Linoone'},
+  {spriteId:10173,dexId:554,name:'Galarian Darumaka'},
+  {spriteId:10174,dexId:555,name:'Galarian Darmanitan'},
+  {spriteId:10175,dexId:562,name:'Galarian Yamask'},
+  {spriteId:10176,dexId:618,name:'Galarian Stunfisk'},
   {section:'Hisuian'},
-  {id:10229,name:'Hisuian Growlithe'},{id:10230,name:'Hisuian Arcanine'},
-  {id:10231,name:'Hisuian Voltorb'},{id:10232,name:'Hisuian Electrode'},
-  {id:10233,name:'Hisuian Typhlosion'},{id:10234,name:'Hisuian Qwilfish'},
-  {id:10235,name:'Hisuian Sneasel'},{id:10236,name:'Hisuian Samurott'},
-  {id:10237,name:'Hisuian Lilligant'},{id:10238,name:'Hisuian Zorua'},
-  {id:10239,name:'Hisuian Zoroark'},{id:10240,name:'Hisuian Braviary'},
-  {id:10241,name:'Hisuian Sliggoo'},{id:10242,name:'Hisuian Goodra'},
-  {id:10243,name:'Hisuian Avalugg'},{id:10244,name:'Hisuian Decidueye'},
+  {spriteId:10229,dexId:58,name:'Hisuian Growlithe'},
+  {spriteId:10230,dexId:59,name:'Hisuian Arcanine'},
+  {spriteId:10231,dexId:100,name:'Hisuian Voltorb'},
+  {spriteId:10232,dexId:101,name:'Hisuian Electrode'},
+  {spriteId:10233,dexId:157,name:'Hisuian Typhlosion'},
+  {spriteId:10234,dexId:211,name:'Hisuian Qwilfish'},
+  {spriteId:10235,dexId:215,name:'Hisuian Sneasel'},
+  {spriteId:10236,dexId:503,name:'Hisuian Samurott'},
+  {spriteId:10237,dexId:549,name:'Hisuian Lilligant'},
+  {spriteId:10238,dexId:570,name:'Hisuian Zorua'},
+  {spriteId:10239,dexId:571,name:'Hisuian Zoroark'},
+  {spriteId:10240,dexId:628,name:'Hisuian Braviary'},
+  {spriteId:10241,dexId:705,name:'Hisuian Sliggoo'},
+  {spriteId:10242,dexId:706,name:'Hisuian Goodra'},
+  {spriteId:10243,dexId:713,name:'Hisuian Avalugg'},
+  {spriteId:10244,dexId:724,name:'Hisuian Decidueye'},
   {section:'Paldean'},
-  {id:10250,name:'Paldean Tauros (Combat)'},{id:10251,name:'Paldean Tauros (Blaze)'},
-  {id:10252,name:'Paldean Tauros (Aqua)'},{id:10253,name:'Paldean Wooper'}
+  {spriteId:10250,dexId:128,name:'Paldean Tauros (Combat)'},
+  {spriteId:10251,dexId:128,name:'Paldean Tauros (Blaze)'},
+  {spriteId:10252,dexId:128,name:'Paldean Tauros (Aqua)'},
+  {spriteId:10253,dexId:194,name:'Paldean Wooper'}
 ];
 
 let myName='',curGen=1,showVariants=false,favs=new Set(),nameArr=[],namesLoaded=false;
 
-function spr(id){return 'https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/'+id+'.png';}
+function spr(spriteId){return 'https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/'+spriteId+'.png';}
 function pad(id){return String(id).padStart(3,'0');}
 function getName(id){return (namesLoaded&&nameArr[id-1])||('#'+pad(id));}
 
@@ -177,13 +206,12 @@ function items(id){
   return Array.from({length:g.e-g.s+1},function(_,i){return g.s+i;});
 }
 
-function card(id,name,isFav,onclk){
-  var displayName=name||getName(id);
-  return '<div class="pc'+(isFav?' fav':'')+'"'+(onclk?' onclick="'+onclk+'"':'')+' title="'+displayName+'">'
+function card(spriteId,dexId,name,isFav,onclk){
+  return '<div class="pc'+(isFav?' fav':'')+'"'+(onclk?' onclick="'+onclk+'"':'')+' title="'+name+'">'
     +'<div class="fmark"></div>'
-    +'<img class="si" src="'+spr(id)+'" width="104" height="104" onerror="this.style.background=\'#eee\'"/>'
-    +'<div class="pn">'+displayName+'</div>'
-    +'<div class="pi">#'+pad(id)+'</div>'
+    +'<img class="si" src="'+spr(spriteId)+'" width="104" height="104" onerror="this.style.background=\'#eee\'"/>'
+    +'<div class="pn">'+name+'</div>'
+    +'<div class="pi">#'+pad(dexId)+'</div>'
     +'</div>';
 }
 
@@ -195,7 +223,7 @@ function rg(){
     VARIANTS.forEach(function(v){
       if(v.section){html+='<div class="vsec" style="grid-column:1/-1">'+v.section+' Forms</div>';return;}
       if(s&&!v.name.toLowerCase().includes(s))return;
-      html+=card(v.id,v.name,favs.has('v'+v.id),'tfv('+v.id+',\''+v.name.replace(/'/g,"\\'")+'\')');
+      html+=card(v.spriteId,v.dexId,v.name,favs.has('v'+v.spriteId),'tfv('+v.spriteId+',\''+v.name.replace(/'/g,"\\'")+'\')');
     });
     pg.innerHTML=html;
   } else {
@@ -203,25 +231,26 @@ function rg(){
       return !s||getName(id).toLowerCase().includes(s)||(''+id).includes(s);
     });
     pg.innerHTML=list.map(function(id){
-      return card(id,null,favs.has(id),'tf('+id+')');
+      return card(id,id,getName(id),favs.has(id),'tf('+id+')');
     }).join('');
   }
 }
 
 function tf(id){favs.has(id)?favs.delete(id):favs.add(id);rg();uh();}
-function tfv(id,name){
-  var key='v'+id;
+function tfv(spriteId,name){
+  var key='v'+spriteId;
   favs.has(key)?favs.delete(key):favs.add(key);
   rg();uh();
 }
 
-function getIdAndName(key){
+function getInfo(key){
   if(String(key).startsWith('v')){
-    var id=parseInt(key.slice(1));
-    var v=VARIANTS.find(function(x){return x.id===id;});
-    return {id:id,name:v?v.name:'#'+pad(id)};
+    var sid=parseInt(key.slice(1));
+    var v=VARIANTS.find(function(x){return x.spriteId===sid;});
+    return {spriteId:sid,dexId:v?v.dexId:sid,name:v?v.name:'#'+pad(sid)};
   }
-  return {id:parseInt(key),name:getName(parseInt(key))};
+  var id=parseInt(key);
+  return {spriteId:id,dexId:id,name:getName(id)};
 }
 
 function rmg(){
@@ -235,17 +264,18 @@ function rmg(){
   if(!keys.length){document.getElementById('me').style.display='block';document.getElementById('mg').innerHTML='';return;}
   document.getElementById('me').style.display='none';
   document.getElementById('mg').innerHTML=keys.map(function(key){
-    var p=getIdAndName(key);
+    var p=getInfo(key);
     var isV=String(key).startsWith('v');
-    return card(p.id,p.name,true,isV?'tfv('+p.id+',\''+p.name.replace(/'/g,"\\'")+'\');rmg()':'tf('+p.id+');rmg()');
+    var clk=isV?'tfv('+p.spriteId+',\''+p.name.replace(/'/g,"\\'")+'\');rmg()':'tf('+p.spriteId+');rmg()';
+    return card(p.spriteId,p.dexId,p.name,true,clk);
   }).join('');
 }
 
-function loadImg(id){
+function loadImg(spriteId){
   return new Promise(function(resolve){
     var img=new Image();img.crossOrigin='anonymous';
     img.onload=function(){resolve(img);};img.onerror=function(){resolve(null);};
-    img.src=spr(id);
+    img.src=spr(spriteId);
   });
 }
 
@@ -271,9 +301,9 @@ async function exportImg(){
   ctx.fillText(cap+"'s favorite Pokemons",W/2,38);
   ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(px,54);ctx.lineTo(W-px,54);ctx.stroke();
-  var pairs=keys.map(function(key){return getIdAndName(key);});
-  var imgs=await Promise.all(pairs.map(function(p){return loadImg(p.id);}));
-  pairs.forEach(function(p,i){
+  var infos=keys.map(function(key){return getInfo(key);});
+  var imgs=await Promise.all(infos.map(function(p){return loadImg(p.spriteId);}));
+  infos.forEach(function(p,i){
     var col=i%cols,row=Math.floor(i/cols);
     var x=px+col*cw,y=th+row*ch,cx=x+cw/2;
     ctx.fillStyle='rgba(255,255,255,0.07)';
@@ -284,7 +314,7 @@ async function exportImg(){
     var nm=p.name;if(nm.length>14)nm=nm.slice(0,13)+'…';
     ctx.fillText(nm,cx,y+100);
     ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='8px sans-serif';
-    ctx.fillText('#'+pad(p.id),cx,y+112);
+    ctx.fillText('#'+pad(p.dexId),cx,y+112);
   });
   document.getElementById('expwrap').style.display='block';
   btn.textContent='Export as image';btn.disabled=false;
