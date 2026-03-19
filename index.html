@@ -24,6 +24,8 @@
   .gp{padding:5px 12px;border:1.5px solid #ddd;border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;background:#fff;color:#666;white-space:nowrap;}
   .gp:hover{border-color:#aaa;}
   .gp.on{border-color:#e53935;background:#ffeaea;color:#e53935;}
+  .gp.var{border-color:#7b1fa2;color:#7b1fa2;background:#f3e5f5;}
+  .gp.var.on{border-color:#7b1fa2;background:#7b1fa2;color:#fff;}
   .sw{padding:8px 16px 10px;}
   .sw input{width:100%;padding:9px 14px;border:1.5px solid #ddd;border-radius:10px;font-size:14px;outline:none;background:#fff;}
   .sw input:focus{border-color:#888;}
@@ -36,11 +38,11 @@
   .pi{font-size:10px;color:#aaa;margin-top:1px;}
   .fmark{position:absolute;top:5px;right:6px;width:8px;height:8px;border-radius:50%;background:#e53935;display:none;}
   .fav .fmark{display:block;}
+  .vsec{padding:8px 16px 4px;font-size:12px;font-weight:700;color:#7b1fa2;text-transform:uppercase;letter-spacing:0.05em;}
   .ab{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fff;border-bottom:1px solid #eee;flex-wrap:wrap;}
   .ebtn{padding:9px 20px;border:none;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;background:#1565c0;color:#fff;}
   .hint{margin:10px 16px;padding:10px 14px;background:#f0f4ff;border-radius:10px;font-size:12px;color:#555;line-height:1.6;}
   .msg{font-size:14px;color:#aaa;text-align:center;padding:40px 16px;}
-  .ldg{font-size:12px;color:#aaa;padding:4px 0;}
   .cl{font-size:13px;color:#aaa;}
   .expwrap{padding:16px;display:none;}
   .expwrap canvas{width:100%;border-radius:10px;border:1px solid #ddd;display:block;}
@@ -76,7 +78,7 @@
   <div id="tb">
     <div class="gs" id="gs"></div>
     <div class="sw"><input type="text" id="si" placeholder="Search by name or number..." oninput="rg()"/></div>
-    <div class="pg" id="pg"></div>
+    <div id="pg" class="pg"></div>
   </div>
   <div id="tm" style="display:none">
     <div class="ab">
@@ -101,7 +103,44 @@ const GENS=[
   {id:7,l:'VII',s:722,e:809},{id:8,l:'VIII',s:810,e:905},
   {id:9,l:'IX',s:906,e:1025}
 ];
-let myName='',curGen=1,favs=new Set(),nameArr=[],namesLoaded=false;
+
+const VARIANTS=[
+  {section:'Alolan'},
+  {id:10091,name:'Alolan Rattata'},{id:10092,name:'Alolan Raticate'},
+  {id:10100,name:'Alolan Raichu'},{id:10101,name:'Alolan Sandshrew'},
+  {id:10102,name:'Alolan Sandslash'},{id:10103,name:'Alolan Vulpix'},
+  {id:10104,name:'Alolan Ninetales'},{id:10105,name:'Alolan Diglett'},
+  {id:10106,name:'Alolan Dugtrio'},{id:10107,name:'Alolan Meowth'},
+  {id:10108,name:'Alolan Persian'},{id:10109,name:'Alolan Geodude'},
+  {id:10110,name:'Alolan Graveler'},{id:10111,name:'Alolan Golem'},
+  {id:10112,name:'Alolan Grimer'},{id:10113,name:'Alolan Muk'},
+  {id:10114,name:'Alolan Exeggutor'},{id:10115,name:'Alolan Marowak'},
+  {section:'Galarian'},
+  {id:10158,name:'Galarian Meowth'},{id:10159,name:'Galarian Ponyta'},
+  {id:10160,name:'Galarian Rapidash'},{id:10161,name:'Galarian Slowpoke'},
+  {id:10162,name:'Galarian Slowbro'},{id:10163,name:"Galarian Farfetch'd"},
+  {id:10164,name:'Galarian Weezing'},{id:10165,name:'Galarian Mr. Mime'},
+  {id:10166,name:'Galarian Articuno'},{id:10167,name:'Galarian Zapdos'},
+  {id:10168,name:'Galarian Moltres'},{id:10169,name:'Galarian Slowking'},
+  {id:10170,name:'Galarian Corsola'},{id:10171,name:'Galarian Zigzagoon'},
+  {id:10172,name:'Galarian Linoone'},{id:10173,name:'Galarian Darumaka'},
+  {id:10174,name:'Galarian Darmanitan'},{id:10175,name:'Galarian Yamask'},
+  {id:10176,name:'Galarian Stunfisk'},
+  {section:'Hisuian'},
+  {id:10229,name:'Hisuian Growlithe'},{id:10230,name:'Hisuian Arcanine'},
+  {id:10231,name:'Hisuian Voltorb'},{id:10232,name:'Hisuian Electrode'},
+  {id:10233,name:'Hisuian Typhlosion'},{id:10234,name:'Hisuian Qwilfish'},
+  {id:10235,name:'Hisuian Sneasel'},{id:10236,name:'Hisuian Samurott'},
+  {id:10237,name:'Hisuian Lilligant'},{id:10238,name:'Hisuian Zorua'},
+  {id:10239,name:'Hisuian Zoroark'},{id:10240,name:'Hisuian Braviary'},
+  {id:10241,name:'Hisuian Sliggoo'},{id:10242,name:'Hisuian Goodra'},
+  {id:10243,name:'Hisuian Avalugg'},{id:10244,name:'Hisuian Decidueye'},
+  {section:'Paldean'},
+  {id:10250,name:'Paldean Tauros (Combat)'},{id:10251,name:'Paldean Tauros (Blaze)'},
+  {id:10252,name:'Paldean Tauros (Aqua)'},{id:10253,name:'Paldean Wooper'}
+];
+
+let myName='',curGen=1,showVariants=false,favs=new Set(),nameArr=[],namesLoaded=false;
 
 function spr(id){return 'https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/'+id+'.png';}
 function pad(id){return String(id).padStart(3,'0');}
@@ -123,65 +162,104 @@ function doLogin(){
 function uh(){document.getElementById('huser').textContent=myName+' · '+favs.size+' favourites';}
 
 function bgs(){
-  document.getElementById('gs').innerHTML=GENS.map(function(g){
-    return '<button class="gp'+(g.id===curGen?' on':'')+'" onclick="sg('+g.id+')">Gen '+g.l+'</button>';
+  var genBtns=GENS.map(function(g){
+    return '<button class="gp'+((!showVariants&&g.id===curGen)?' on':'')+'" onclick="sg('+g.id+')">Gen '+g.l+'</button>';
   }).join('');
+  var varBtn='<button class="gp var'+(showVariants?' on':'')+'" onclick="sgv()">Variants</button>';
+  document.getElementById('gs').innerHTML=genBtns+varBtn;
 }
 
-function sg(id){curGen=id;document.getElementById('si').value='';bgs();rg();}
+function sg(id){showVariants=false;curGen=id;document.getElementById('si').value='';bgs();rg();}
+function sgv(){showVariants=true;document.getElementById('si').value='';bgs();rg();}
 
 function items(id){
   var g=GENS.find(function(x){return x.id===id;});
   return Array.from({length:g.e-g.s+1},function(_,i){return g.s+i;});
 }
 
-function card(id,isFav,onclk){
-  return '<div class="pc'+(isFav?' fav':'')+'"'+(onclk?' onclick="'+onclk+'"':'')+' title="'+getName(id)+'">'
+function card(id,name,isFav,onclk){
+  var displayName=name||getName(id);
+  return '<div class="pc'+(isFav?' fav':'')+'"'+(onclk?' onclick="'+onclk+'"':'')+' title="'+displayName+'">'
     +'<div class="fmark"></div>'
     +'<img class="si" src="'+spr(id)+'" width="104" height="104" onerror="this.style.background=\'#eee\'"/>'
-    +'<div class="pn">'+getName(id)+'</div>'
+    +'<div class="pn">'+displayName+'</div>'
     +'<div class="pi">#'+pad(id)+'</div>'
     +'</div>';
 }
 
 function rg(){
   var s=document.getElementById('si').value.toLowerCase();
-  var list=items(curGen).filter(function(id){
-    return !s||getName(id).toLowerCase().includes(s)||(''+id).includes(s);
-  });
-  document.getElementById('pg').innerHTML=list.map(function(id){
-    return card(id,favs.has(id),'tf('+id+')');
-  }).join('');
+  var pg=document.getElementById('pg');
+  if(showVariants){
+    var html='';
+    VARIANTS.forEach(function(v){
+      if(v.section){html+='<div class="vsec" style="grid-column:1/-1">'+v.section+' Forms</div>';return;}
+      if(s&&!v.name.toLowerCase().includes(s))return;
+      html+=card(v.id,v.name,favs.has('v'+v.id),'tfv('+v.id+',\''+v.name.replace(/'/g,"\\'")+'\')');
+    });
+    pg.innerHTML=html;
+  } else {
+    var list=items(curGen).filter(function(id){
+      return !s||getName(id).toLowerCase().includes(s)||(''+id).includes(s);
+    });
+    pg.innerHTML=list.map(function(id){
+      return card(id,null,favs.has(id),'tf('+id+')');
+    }).join('');
+  }
 }
 
 function tf(id){favs.has(id)?favs.delete(id):favs.add(id);rg();uh();}
+function tfv(id,name){
+  var key='v'+id;
+  favs.has(key)?favs.delete(key):favs.add(key);
+  rg();uh();
+}
+
+function getIdAndName(key){
+  if(String(key).startsWith('v')){
+    var id=parseInt(key.slice(1));
+    var v=VARIANTS.find(function(x){return x.id===id;});
+    return {id:id,name:v?v.name:'#'+pad(id)};
+  }
+  return {id:parseInt(key),name:getName(parseInt(key))};
+}
 
 function rmg(){
-  var ids=[...favs].sort(function(a,b){return a-b;});
-  document.getElementById('cl').textContent=ids.length+' Pokemon';
+  var keys=[...favs].sort(function(a,b){
+    var ai=String(a).startsWith('v')?parseInt(a.slice(1)):parseInt(a);
+    var bi=String(b).startsWith('v')?parseInt(b.slice(1)):parseInt(b);
+    return ai-bi;
+  });
+  document.getElementById('cl').textContent=keys.length+' Pokemon';
   document.getElementById('expwrap').style.display='none';
-  if(!ids.length){document.getElementById('me').style.display='block';document.getElementById('mg').innerHTML='';return;}
+  if(!keys.length){document.getElementById('me').style.display='block';document.getElementById('mg').innerHTML='';return;}
   document.getElementById('me').style.display='none';
-  document.getElementById('mg').innerHTML=ids.map(function(id){return card(id,true,'tf('+id+');rmg()');}).join('');
+  document.getElementById('mg').innerHTML=keys.map(function(key){
+    var p=getIdAndName(key);
+    var isV=String(key).startsWith('v');
+    return card(p.id,p.name,true,isV?'tfv('+p.id+',\''+p.name.replace(/'/g,"\\'")+'\');rmg()':'tf('+p.id+');rmg()');
+  }).join('');
 }
 
 function loadImg(id){
   return new Promise(function(resolve){
-    var img=new Image();
-    img.crossOrigin='anonymous';
-    img.onload=function(){resolve(img);};
-    img.onerror=function(){resolve(null);};
+    var img=new Image();img.crossOrigin='anonymous';
+    img.onload=function(){resolve(img);};img.onerror=function(){resolve(null);};
     img.src=spr(id);
   });
 }
 
 async function exportImg(){
-  var ids=[...favs].sort(function(a,b){return a-b;});
-  if(!ids.length){alert('No favourites yet!');return;}
+  var keys=[...favs].sort(function(a,b){
+    var ai=String(a).startsWith('v')?parseInt(a.slice(1)):parseInt(a);
+    var bi=String(b).startsWith('v')?parseInt(b.slice(1)):parseInt(b);
+    return ai-bi;
+  });
+  if(!keys.length){alert('No favourites yet!');return;}
   var btn=document.querySelector('.ebtn');
   btn.textContent='Generating...';btn.disabled=true;
   var cols=5,cw=110,ch=130,px=20,th=80;
-  var rows=Math.ceil(ids.length/cols);
+  var rows=Math.ceil(keys.length/cols);
   var W=cols*cw+px*2,H=th+rows*ch+20;
   var canvas=document.getElementById('expcanvas');
   canvas.width=W;canvas.height=H;
@@ -193,18 +271,20 @@ async function exportImg(){
   ctx.fillText(cap+"'s favorite Pokemons",W/2,38);
   ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(px,54);ctx.lineTo(W-px,54);ctx.stroke();
-  var imgs=await Promise.all(ids.map(function(id){return loadImg(id);}));
-  ids.forEach(function(id,i){
+  var pairs=keys.map(function(key){return getIdAndName(key);});
+  var imgs=await Promise.all(pairs.map(function(p){return loadImg(p.id);}));
+  pairs.forEach(function(p,i){
     var col=i%cols,row=Math.floor(i/cols);
     var x=px+col*cw,y=th+row*ch,cx=x+cw/2;
     ctx.fillStyle='rgba(255,255,255,0.07)';
     ctx.fillRect(x+4,y+2,cw-8,ch-6);
     if(imgs[i]){try{ctx.drawImage(imgs[i],cx-42,y+6,84,84);}catch(e){}}
     else{ctx.fillStyle='rgba(255,255,255,0.1)';ctx.fillRect(cx-42,y+6,84,84);}
-    ctx.fillStyle='#fff';ctx.font='bold 10px sans-serif';ctx.textAlign='center';
-    ctx.fillText(getName(id),cx,y+100);
-    ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='9px sans-serif';
-    ctx.fillText('#'+pad(id),cx,y+113);
+    ctx.fillStyle='#fff';ctx.font='bold 9px sans-serif';ctx.textAlign='center';
+    var nm=p.name;if(nm.length>14)nm=nm.slice(0,13)+'…';
+    ctx.fillText(nm,cx,y+100);
+    ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='8px sans-serif';
+    ctx.fillText('#'+pad(p.id),cx,y+112);
   });
   document.getElementById('expwrap').style.display='block';
   btn.textContent='Export as image';btn.disabled=false;
