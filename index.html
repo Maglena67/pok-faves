@@ -275,7 +275,7 @@ async function exportImg(){
   if(!keys.length){alert('No favourites yet!');return;}
   var btn=document.getElementById('expbtn');
   btn.textContent='Generating...';btn.disabled=true;
-  var cols=6,cw=80,ch=96,px=16,th=56;
+  var cols=5,cw=96,ch=114,px=16,th=64;
   var rows=Math.ceil(keys.length/cols);
   var W=cols*cw+px*2,H=th+rows*ch+px;
   var canvas=document.getElementById('expcanvas');
@@ -284,10 +284,10 @@ async function exportImg(){
   ctx.fillStyle='#1a1a2e';ctx.fillRect(0,0,W,H);
   var cap=myName.charAt(0).toUpperCase()+myName.slice(1);
   ctx.textAlign='center';ctx.fillStyle='#fff';
-  ctx.font='bold 14px sans-serif';
-  ctx.fillText(cap+"'s favorite Pokemons",W/2,28);
+  ctx.font='bold 16px sans-serif';
+  ctx.fillText(cap+"'s favorite Pokemons",W/2,32);
   ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(px,38);ctx.lineTo(W-px,38);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(px,44);ctx.lineTo(W-px,44);ctx.stroke();
   var infos=keys.map(function(key){return getInfo(key);});
   var imgs=await Promise.all(infos.map(function(p){return loadImg(p.sprId);}));
   infos.forEach(function(p,i){
@@ -295,13 +295,13 @@ async function exportImg(){
     var x=px+col*cw,y=th+row*ch,cx=x+cw/2;
     ctx.fillStyle='rgba(255,255,255,0.07)';
     ctx.fillRect(x+2,y+2,cw-4,ch-4);
-    if(imgs[i]){try{ctx.drawImage(imgs[i],cx-28,y+4,56,56);}catch(e){}}
-    else{ctx.fillStyle='rgba(255,255,255,0.1)';ctx.fillRect(cx-28,y+4,56,56);}
-    ctx.fillStyle='#fff';ctx.font='bold 8px sans-serif';ctx.textAlign='center';
-    var nm=p.name;if(nm.length>12)nm=nm.slice(0,11)+'…';
-    ctx.fillText(nm,cx,y+70);
-    ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='7px sans-serif';
-    ctx.fillText('#'+pad(p.dexId),cx,y+80);
+    if(imgs[i]){try{ctx.drawImage(imgs[i],cx-34,y+5,68,68);}catch(e){}}
+    else{ctx.fillStyle='rgba(255,255,255,0.1)';ctx.fillRect(cx-34,y+5,68,68);}
+    ctx.fillStyle='#fff';ctx.font='bold 9px sans-serif';ctx.textAlign='center';
+    var nm=p.name;if(nm.length>13)nm=nm.slice(0,12)+'…';
+    ctx.fillText(nm,cx,y+84);
+    ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='8px sans-serif';
+    ctx.fillText('#'+pad(p.dexId),cx,y+95);
   });
   var ew=document.getElementById('expwrap');
   ew.style.display='block';
