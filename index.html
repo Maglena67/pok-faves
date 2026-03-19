@@ -44,7 +44,7 @@
   .hint{margin:10px 16px;padding:10px 14px;background:#f0f4ff;border-radius:10px;font-size:12px;color:#555;line-height:1.6;}
   .msg{font-size:14px;color:#aaa;text-align:center;padding:40px 16px;}
   .cl{font-size:13px;color:#aaa;}
-  .expwrap{padding:16px;display:none;}
+  .expwrap{padding:16px;}
   .expwrap canvas{width:100%;border-radius:10px;border:1px solid #ddd;display:block;}
   .dlbtn{display:block;width:100%;margin-top:10px;padding:11px;border:1.5px solid #ddd;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;background:#fff;color:#111;text-align:center;}
   .dlbtn:hover{background:#f5f5f5;}
@@ -82,13 +82,13 @@
   </div>
   <div id="tm" style="display:none">
     <div class="ab">
-      <button class="ebtn" onclick="exportImg()">Export as image</button>
+      <button class="ebtn" id="expbtn" onclick="exportImg()">Export as image</button>
       <span class="cl" id="cl"></span>
     </div>
-    <div class="hint">Click "Export as image" then "Download image" and send it to your friends!</div>
+    <div class="hint">Click "Export as image" — the image will appear below your list. Then click "Download image"!</div>
     <div class="expwrap" id="expwrap">
       <canvas id="expcanvas"></canvas>
-      <button class="dlbtn" onclick="downloadImg()">Download image</button>
+      <button class="dlbtn" id="dlbtn" style="display:none" onclick="downloadImg()">Download image</button>
     </div>
     <div class="pg" id="mg"></div>
     <div class="msg" id="me" style="display:none">No favourites yet — go to Browse and click Pokémon to add them!</div>
@@ -104,7 +104,6 @@ const GENS=[
   {id:9,l:'IX',s:906,e:1025}
 ];
 
-// IDs verified from https://pokeapi.co/api/v2/pokemon?limit=200&offset=10090
 const VARIANTS=[
   {section:'Alolan'},
   {id:10091,dexId:19,name:'Alolan Rattata'},
@@ -252,7 +251,6 @@ function getInfo(key){
 function rmg(){
   var keys=[...favs];
   document.getElementById('cl').textContent=keys.length+' Pokemon';
-  document.getElementById('expwrap').style.display='none';
   if(!keys.length){document.getElementById('me').style.display='block';document.getElementById('mg').innerHTML='';return;}
   document.getElementById('me').style.display='none';
   document.getElementById('mg').innerHTML=keys.map(function(key){
@@ -273,7 +271,7 @@ function loadImg(id){
 async function exportImg(){
   var keys=[...favs];
   if(!keys.length){alert('No favourites yet!');return;}
-  var btn=document.querySelector('.ebtn');
+  var btn=document.getElementById('expbtn');
   btn.textContent='Generating...';btn.disabled=true;
   var cols=5,cw=110,ch=130,px=20,th=80;
   var rows=Math.ceil(keys.length/cols);
@@ -303,9 +301,10 @@ async function exportImg(){
     ctx.fillStyle='rgba(255,255,255,0.45)';ctx.font='8px sans-serif';
     ctx.fillText('#'+pad(p.dexId),cx,y+112);
   });
-  document.getElementById('expwrap').style.display='block';
   btn.textContent='Export as image';btn.disabled=false;
-  rmg();
+  document.getElementById('dlbtn').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  alert('Done! Scroll down to see your image and click Download image.');
 }
 
 function downloadImg(){
