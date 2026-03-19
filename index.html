@@ -104,74 +104,74 @@ const GENS=[
   {id:9,l:'IX',s:906,e:1025}
 ];
 
-// spriteId = PokeAPI variant ID, dexId = original dex number for display
 const VARIANTS=[
   {section:'Alolan'},
-  {spriteId:10091,dexId:19,name:'Alolan Rattata'},
-  {spriteId:10092,dexId:20,name:'Alolan Raticate'},
-  {spriteId:10100,dexId:26,name:'Alolan Raichu'},
-  {spriteId:10101,dexId:27,name:'Alolan Sandshrew'},
-  {spriteId:10102,dexId:28,name:'Alolan Sandslash'},
-  {spriteId:10103,dexId:37,name:'Alolan Vulpix'},
-  {spriteId:10104,dexId:38,name:'Alolan Ninetales'},
-  {spriteId:10105,dexId:50,name:'Alolan Diglett'},
-  {spriteId:10106,dexId:51,name:'Alolan Dugtrio'},
-  {spriteId:10107,dexId:52,name:'Alolan Meowth'},
-  {spriteId:10108,dexId:53,name:'Alolan Persian'},
-  {spriteId:10109,dexId:74,name:'Alolan Geodude'},
-  {spriteId:10110,dexId:75,name:'Alolan Graveler'},
-  {spriteId:10111,dexId:76,name:'Alolan Golem'},
-  {spriteId:10112,dexId:88,name:'Alolan Grimer'},
-  {spriteId:10113,dexId:89,name:'Alolan Muk'},
-  {spriteId:10114,dexId:103,name:'Alolan Exeggutor'},
-  {spriteId:10115,dexId:105,name:'Alolan Marowak'},
+  {slug:'rattata-alola',dexId:19,name:'Alolan Rattata'},
+  {slug:'raticate-alola',dexId:20,name:'Alolan Raticate'},
+  {slug:'raichu-alola',dexId:26,name:'Alolan Raichu'},
+  {slug:'sandshrew-alola',dexId:27,name:'Alolan Sandshrew'},
+  {slug:'sandslash-alola',dexId:28,name:'Alolan Sandslash'},
+  {slug:'vulpix-alola',dexId:37,name:'Alolan Vulpix'},
+  {slug:'ninetales-alola',dexId:38,name:'Alolan Ninetales'},
+  {slug:'diglett-alola',dexId:50,name:'Alolan Diglett'},
+  {slug:'dugtrio-alola',dexId:51,name:'Alolan Dugtrio'},
+  {slug:'meowth-alola',dexId:52,name:'Alolan Meowth'},
+  {slug:'persian-alola',dexId:53,name:'Alolan Persian'},
+  {slug:'geodude-alola',dexId:74,name:'Alolan Geodude'},
+  {slug:'graveler-alola',dexId:75,name:'Alolan Graveler'},
+  {slug:'golem-alola',dexId:76,name:'Alolan Golem'},
+  {slug:'grimer-alola',dexId:88,name:'Alolan Grimer'},
+  {slug:'muk-alola',dexId:89,name:'Alolan Muk'},
+  {slug:'exeggutor-alola',dexId:103,name:'Alolan Exeggutor'},
+  {slug:'marowak-alola',dexId:105,name:'Alolan Marowak'},
   {section:'Galarian'},
-  {spriteId:10158,dexId:52,name:'Galarian Meowth'},
-  {spriteId:10159,dexId:77,name:'Galarian Ponyta'},
-  {spriteId:10160,dexId:78,name:'Galarian Rapidash'},
-  {spriteId:10161,dexId:79,name:'Galarian Slowpoke'},
-  {spriteId:10162,dexId:80,name:'Galarian Slowbro'},
-  {spriteId:10163,dexId:83,name:"Galarian Farfetch'd"},
-  {spriteId:10164,dexId:110,name:'Galarian Weezing'},
-  {spriteId:10165,dexId:122,name:'Galarian Mr. Mime'},
-  {spriteId:10166,dexId:144,name:'Galarian Articuno'},
-  {spriteId:10167,dexId:145,name:'Galarian Zapdos'},
-  {spriteId:10168,dexId:146,name:'Galarian Moltres'},
-  {spriteId:10169,dexId:199,name:'Galarian Slowking'},
-  {spriteId:10170,dexId:222,name:'Galarian Corsola'},
-  {spriteId:10171,dexId:263,name:'Galarian Zigzagoon'},
-  {spriteId:10172,dexId:264,name:'Galarian Linoone'},
-  {spriteId:10173,dexId:554,name:'Galarian Darumaka'},
-  {spriteId:10174,dexId:555,name:'Galarian Darmanitan'},
-  {spriteId:10175,dexId:562,name:'Galarian Yamask'},
-  {spriteId:10176,dexId:618,name:'Galarian Stunfisk'},
+  {slug:'meowth-galar',dexId:52,name:'Galarian Meowth'},
+  {slug:'ponyta-galar',dexId:77,name:'Galarian Ponyta'},
+  {slug:'rapidash-galar',dexId:78,name:'Galarian Rapidash'},
+  {slug:'slowpoke-galar',dexId:79,name:'Galarian Slowpoke'},
+  {slug:'slowbro-galar',dexId:80,name:'Galarian Slowbro'},
+  {slug:'farfetchd-galar',dexId:83,name:"Galarian Farfetch'd"},
+  {slug:'weezing-galar',dexId:110,name:'Galarian Weezing'},
+  {slug:'mr-mime-galar',dexId:122,name:'Galarian Mr. Mime'},
+  {slug:'articuno-galar',dexId:144,name:'Galarian Articuno'},
+  {slug:'zapdos-galar',dexId:145,name:'Galarian Zapdos'},
+  {slug:'moltres-galar',dexId:146,name:'Galarian Moltres'},
+  {slug:'slowking-galar',dexId:199,name:'Galarian Slowking'},
+  {slug:'corsola-galar',dexId:222,name:'Galarian Corsola'},
+  {slug:'zigzagoon-galar',dexId:263,name:'Galarian Zigzagoon'},
+  {slug:'linoone-galar',dexId:264,name:'Galarian Linoone'},
+  {slug:'darumaka-galar',dexId:554,name:'Galarian Darumaka'},
+  {slug:'darmanitan-galar',dexId:555,name:'Galarian Darmanitan'},
+  {slug:'yamask-galar',dexId:562,name:'Galarian Yamask'},
+  {slug:'stunfisk-galar',dexId:618,name:'Galarian Stunfisk'},
   {section:'Hisuian'},
-  {spriteId:10229,dexId:58,name:'Hisuian Growlithe'},
-  {spriteId:10230,dexId:59,name:'Hisuian Arcanine'},
-  {spriteId:10231,dexId:100,name:'Hisuian Voltorb'},
-  {spriteId:10232,dexId:101,name:'Hisuian Electrode'},
-  {spriteId:10233,dexId:157,name:'Hisuian Typhlosion'},
-  {spriteId:10234,dexId:211,name:'Hisuian Qwilfish'},
-  {spriteId:10235,dexId:215,name:'Hisuian Sneasel'},
-  {spriteId:10236,dexId:503,name:'Hisuian Samurott'},
-  {spriteId:10237,dexId:549,name:'Hisuian Lilligant'},
-  {spriteId:10238,dexId:570,name:'Hisuian Zorua'},
-  {spriteId:10239,dexId:571,name:'Hisuian Zoroark'},
-  {spriteId:10240,dexId:628,name:'Hisuian Braviary'},
-  {spriteId:10241,dexId:705,name:'Hisuian Sliggoo'},
-  {spriteId:10242,dexId:706,name:'Hisuian Goodra'},
-  {spriteId:10243,dexId:713,name:'Hisuian Avalugg'},
-  {spriteId:10244,dexId:724,name:'Hisuian Decidueye'},
+  {slug:'growlithe-hisui',dexId:58,name:'Hisuian Growlithe'},
+  {slug:'arcanine-hisui',dexId:59,name:'Hisuian Arcanine'},
+  {slug:'voltorb-hisui',dexId:100,name:'Hisuian Voltorb'},
+  {slug:'electrode-hisui',dexId:101,name:'Hisuian Electrode'},
+  {slug:'typhlosion-hisui',dexId:157,name:'Hisuian Typhlosion'},
+  {slug:'qwilfish-hisui',dexId:211,name:'Hisuian Qwilfish'},
+  {slug:'sneasel-hisui',dexId:215,name:'Hisuian Sneasel'},
+  {slug:'samurott-hisui',dexId:503,name:'Hisuian Samurott'},
+  {slug:'lilligant-hisui',dexId:549,name:'Hisuian Lilligant'},
+  {slug:'zorua-hisui',dexId:570,name:'Hisuian Zorua'},
+  {slug:'zoroark-hisui',dexId:571,name:'Hisuian Zoroark'},
+  {slug:'braviary-hisui',dexId:628,name:'Hisuian Braviary'},
+  {slug:'sliggoo-hisui',dexId:705,name:'Hisuian Sliggoo'},
+  {slug:'goodra-hisui',dexId:706,name:'Hisuian Goodra'},
+  {slug:'avalugg-hisui',dexId:713,name:'Hisuian Avalugg'},
+  {slug:'decidueye-hisui',dexId:724,name:'Hisuian Decidueye'},
   {section:'Paldean'},
-  {spriteId:10250,dexId:128,name:'Paldean Tauros (Combat)'},
-  {spriteId:10251,dexId:128,name:'Paldean Tauros (Blaze)'},
-  {spriteId:10252,dexId:128,name:'Paldean Tauros (Aqua)'},
-  {spriteId:10253,dexId:194,name:'Paldean Wooper'}
+  {slug:'tauros-paldea-combat',dexId:128,name:'Paldean Tauros (Combat)'},
+  {slug:'tauros-paldea-blaze',dexId:128,name:'Paldean Tauros (Blaze)'},
+  {slug:'tauros-paldea-aqua',dexId:128,name:'Paldean Tauros (Aqua)'},
+  {slug:'wooper-paldea',dexId:194,name:'Paldean Wooper'}
 ];
 
 let myName='',curGen=1,showVariants=false,favs=new Set(),nameArr=[],namesLoaded=false;
 
-function spr(spriteId){return 'https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/'+spriteId+'.png';}
+function spr(id){return 'https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/'+id+'.png';}
+function vspr(slug){return 'https://img.pokemondb.net/sprites/home/normal/'+slug+'.png';}
 function pad(id){return String(id).padStart(3,'0');}
 function getName(id){return (namesLoaded&&nameArr[id-1])||('#'+pad(id));}
 
@@ -206,12 +206,22 @@ function items(id){
   return Array.from({length:g.e-g.s+1},function(_,i){return g.s+i;});
 }
 
-function card(spriteId,dexId,name,isFav,onclk){
-  return '<div class="pc'+(isFav?' fav':'')+'"'+(onclk?' onclick="'+onclk+'"':'')+' title="'+name+'">'
+function cardReg(id,isFav,onclk){
+  var name=getName(id);
+  return '<div class="pc'+(isFav?' fav':'')+'" onclick="'+onclk+'" title="'+name+'">'
     +'<div class="fmark"></div>'
-    +'<img class="si" src="'+spr(spriteId)+'" width="104" height="104" onerror="this.style.background=\'#eee\'"/>'
+    +'<img class="si" src="'+spr(id)+'" width="104" height="104" onerror="this.style.background=\'#eee\'"/>'
     +'<div class="pn">'+name+'</div>'
-    +'<div class="pi">#'+pad(dexId)+'</div>'
+    +'<div class="pi">#'+pad(id)+'</div>'
+    +'</div>';
+}
+
+function cardVar(v,isFav,onclk){
+  return '<div class="pc'+(isFav?' fav':'')+'" onclick="'+onclk+'" title="'+v.name+'">'
+    +'<div class="fmark"></div>'
+    +'<img class="si" src="'+vspr(v.slug)+'" width="104" height="104" onerror="this.style.background=\'#eee\'"/>'
+    +'<div class="pn">'+v.name+'</div>'
+    +'<div class="pi">#'+pad(v.dexId)+'</div>'
     +'</div>';
 }
 
@@ -223,7 +233,7 @@ function rg(){
     VARIANTS.forEach(function(v){
       if(v.section){html+='<div class="vsec" style="grid-column:1/-1">'+v.section+' Forms</div>';return;}
       if(s&&!v.name.toLowerCase().includes(s))return;
-      html+=card(v.spriteId,v.dexId,v.name,favs.has('v'+v.spriteId),'tfv('+v.spriteId+',\''+v.name.replace(/'/g,"\\'")+'\')');
+      html+=cardVar(v,favs.has('v'+v.slug),'tfv("'+v.slug+'")');
     });
     pg.innerHTML=html;
   } else {
@@ -231,34 +241,30 @@ function rg(){
       return !s||getName(id).toLowerCase().includes(s)||(''+id).includes(s);
     });
     pg.innerHTML=list.map(function(id){
-      return card(id,id,getName(id),favs.has(id),'tf('+id+')');
+      return cardReg(id,favs.has(id),'tf('+id+')');
     }).join('');
   }
 }
 
 function tf(id){favs.has(id)?favs.delete(id):favs.add(id);rg();uh();}
-function tfv(spriteId,name){
-  var key='v'+spriteId;
+function tfv(slug){
+  var key='v'+slug;
   favs.has(key)?favs.delete(key):favs.add(key);
   rg();uh();
 }
 
 function getInfo(key){
   if(String(key).startsWith('v')){
-    var sid=parseInt(key.slice(1));
-    var v=VARIANTS.find(function(x){return x.spriteId===sid;});
-    return {spriteId:sid,dexId:v?v.dexId:sid,name:v?v.name:'#'+pad(sid)};
+    var slug=key.slice(1);
+    var v=VARIANTS.find(function(x){return x.slug===slug;});
+    return v?{imgUrl:vspr(v.slug),dexId:v.dexId,name:v.name}:{imgUrl:'',dexId:0,name:slug};
   }
   var id=parseInt(key);
-  return {spriteId:id,dexId:id,name:getName(id)};
+  return {imgUrl:spr(id),dexId:id,name:getName(id)};
 }
 
 function rmg(){
-  var keys=[...favs].sort(function(a,b){
-    var ai=String(a).startsWith('v')?parseInt(a.slice(1)):parseInt(a);
-    var bi=String(b).startsWith('v')?parseInt(b.slice(1)):parseInt(b);
-    return ai-bi;
-  });
+  var keys=[...favs];
   document.getElementById('cl').textContent=keys.length+' Pokemon';
   document.getElementById('expwrap').style.display='none';
   if(!keys.length){document.getElementById('me').style.display='block';document.getElementById('mg').innerHTML='';return;}
@@ -266,25 +272,26 @@ function rmg(){
   document.getElementById('mg').innerHTML=keys.map(function(key){
     var p=getInfo(key);
     var isV=String(key).startsWith('v');
-    var clk=isV?'tfv('+p.spriteId+',\''+p.name.replace(/'/g,"\\'")+'\');rmg()':'tf('+p.spriteId+');rmg()';
-    return card(p.spriteId,p.dexId,p.name,true,clk);
+    var clk=isV?'tfv("'+key.slice(1)+'");rmg()':'tf('+parseInt(key)+');rmg()';
+    return '<div class="pc fav" onclick="'+clk+'" title="'+p.name+'">'
+      +'<div class="fmark"></div>'
+      +'<img class="si" src="'+p.imgUrl+'" width="104" height="104" onerror="this.style.background=\'#eee\'"/>'
+      +'<div class="pn">'+p.name+'</div>'
+      +'<div class="pi">#'+pad(p.dexId)+'</div>'
+      +'</div>';
   }).join('');
 }
 
-function loadImg(spriteId){
+function loadImg(url){
   return new Promise(function(resolve){
     var img=new Image();img.crossOrigin='anonymous';
     img.onload=function(){resolve(img);};img.onerror=function(){resolve(null);};
-    img.src=spr(spriteId);
+    img.src=url;
   });
 }
 
 async function exportImg(){
-  var keys=[...favs].sort(function(a,b){
-    var ai=String(a).startsWith('v')?parseInt(a.slice(1)):parseInt(a);
-    var bi=String(b).startsWith('v')?parseInt(b.slice(1)):parseInt(b);
-    return ai-bi;
-  });
+  var keys=[...favs];
   if(!keys.length){alert('No favourites yet!');return;}
   var btn=document.querySelector('.ebtn');
   btn.textContent='Generating...';btn.disabled=true;
@@ -302,7 +309,7 @@ async function exportImg(){
   ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(px,54);ctx.lineTo(W-px,54);ctx.stroke();
   var infos=keys.map(function(key){return getInfo(key);});
-  var imgs=await Promise.all(infos.map(function(p){return loadImg(p.spriteId);}));
+  var imgs=await Promise.all(infos.map(function(p){return loadImg(p.imgUrl);}));
   infos.forEach(function(p,i){
     var col=i%cols,row=Math.floor(i/cols);
     var x=px+col*cw,y=th+row*ch,cx=x+cw/2;
